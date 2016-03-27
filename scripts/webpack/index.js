@@ -20,7 +20,7 @@ const server = new webpackDevServer(compiler, {
   noInfo: false,
   lazy: false,
   publicPath: `${contentBase}/build`,
-  contentBase: './examples/',
+  contentBase: './public',
   stats: {
     colors: true,
   },

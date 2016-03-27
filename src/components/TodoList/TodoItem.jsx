@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default const TodoItem = (actions, {id, title, description, checked}, i) =>
+const TodoItem = (actions, {id, title, description, checked}, i) => (
   <li>
     <div className="checkbox">
       <input
@@ -20,3 +20,6 @@ export default const TodoItem = (actions, {id, title, description, checked}, i) 
       </button>
     </aside>
   </li>
+);
+
+export default TodoItem;

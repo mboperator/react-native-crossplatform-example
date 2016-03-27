@@ -1,4 +1,4 @@
-# redux-modules [![Circle CI](https://circleci.com/gh/mboperator/redux-modules/tree/master.svg?style=svg)](https://circleci.com/gh/mboperator/redux-modules/tree/master)
+# Levi [![Circle CI](https://circleci.com/gh/mboperator/redux-modules/tree/master.svg?style=svg)](https://circleci.com/gh/mboperator/levi/tree/master)
 
 A library for defining clear, boilerplate free Redux reducers with typechecked action payloads. Based on the [redux duck](https://github.com/erikras/ducks-modular-redux) paradigm proposed by [erikras](https://github.com/erikras/).
 
