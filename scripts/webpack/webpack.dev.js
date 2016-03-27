@@ -7,10 +7,10 @@ const PORT = '8080';
 const devConfig = baseConfig.mergeDeep({
 
   entry: {
-    example: [
+    app: [
       `webpack-dev-server/client?http://${HOST}:${PORT}`,
       'webpack/hot/dev-server',
-      './TodoMVC/app',
+      './src/app',
     ],
   },
 
