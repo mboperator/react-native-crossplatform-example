@@ -12,6 +12,7 @@ import React, {
 } from 'react-native';
 import { Interface as TodoInterface } from './_shared/modules/todo';
 import { Provider } from 'react-redux';
+import TodoList from './ios/components/TodoList';
 import store from './_shared/modules/store';
 
 const styles = StyleSheet.create({
@@ -27,17 +28,13 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   instructions: {
-    textAlign: 'center',
-    color: '#333333',
     marginBottom: 5,
   },
 });
 
 class TodoApp extends Component {
   componentDidMount() {
-    this.props.todos.createTodo({
-      todo: { description: 'ohai' },
-    });
+    this.props.todos.createTodo({ description: 'ohai' });
   }
   render() {
     return (
@@ -45,9 +42,9 @@ class TodoApp extends Component {
         <Text style={styles.welcome}>
           Welcome to the TODO APP
         </Text>
-        <Text style={styles.instructions}>
-          {JSON.stringify(this.props)}
-        </Text>
+        <View style={styles.instructions}>
+          <TodoList items={this.props.todos.todos} />
+        </View>
         <Text style={styles.instructions}>
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu
