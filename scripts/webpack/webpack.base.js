@@ -1,4 +1,3 @@
-import { resolve } from 'path';
 import { fromJS } from 'immutable';
 import { path as rootPath } from 'app-root-path';
 
@@ -7,7 +6,7 @@ export default fromJS({
   context: rootPath,
 
   entry: {
-    app: './src/app',
+    app: './src/index.web',
   },
 
   module: {
@@ -25,6 +24,10 @@ export default fromJS({
   },
 
   resolve: {
+    modulesDirectories: [
+      'node_modules',
+      '_shared',
+    ],
     extensions: ['', '.js', '.jsx', '.json', '.css', '.sass', '.scss'],
   },
 
