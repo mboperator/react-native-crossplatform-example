@@ -10,6 +10,9 @@ import React, {
   Text,
   View,
 } from 'react-native';
+import { Interface as TodoInterface } from './_shared/modules/todo';
+import { Provider } from 'react-redux';
+import store from './_shared/modules/store';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,6 +34,11 @@ const styles = StyleSheet.create({
 });
 
 class TodoApp extends Component {
+  componentDidMount() {
+    this.props.todos.createTodo({
+      todo: { description: 'ohai' },
+    });
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -38,7 +46,7 @@ class TodoApp extends Component {
           Welcome to the TODO APP
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit index.ios.js
+          {JSON.stringify(this.props)}
         </Text>
         <Text style={styles.instructions}>
           Press Cmd+R to reload,{'\n'}
@@ -49,5 +57,17 @@ class TodoApp extends Component {
   }
 }
 
+const ConnectedTodos = TodoInterface('todos', TodoApp);
 
-AppRegistry.registerComponent('TodoApp', () => TodoApp);
+class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <ConnectedTodos />
+      </Provider>
+    );
+  }
+}
+
+
+AppRegistry.registerComponent('TodoApp', () => App);
