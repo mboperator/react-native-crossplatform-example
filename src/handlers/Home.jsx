@@ -5,6 +5,10 @@ import { Interface as TodoInterface } from '../modules/todo';
 
 @TodoInterface('todos')
 export default class TodosContainer extends React.Component {
+  static propTypes = {
+    todos: React.PropTypes.object,
+  };
+
   componentDidMount() {
     /* Kickoff Fetch Todos */
   }
