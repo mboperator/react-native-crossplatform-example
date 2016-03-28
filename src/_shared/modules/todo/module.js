@@ -36,7 +36,7 @@ export const { actions, reducer } = createModule({
       payloadTypes: {
         index: PropTypes.number.isRequired,
         todo: PropTypes.shape({
-          description: PropTypes.string,
+          description: PropTypes.string.isRequired,
           checked: PropTypes.bool,
         }),
       },

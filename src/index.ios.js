@@ -8,6 +8,7 @@ import React, {
   Component,
   StyleSheet,
   Text,
+  TextInput,
   View,
 } from 'react-native';
 import { Interface as TodoInterface } from './_shared/modules/todo';
@@ -33,17 +34,24 @@ const styles = StyleSheet.create({
 });
 
 class TodoApp extends Component {
-  componentDidMount() {
-    this.props.todos.createTodo({ description: 'ohai' });
-  }
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to the TODO APP
-        </Text>
+        <Text style={styles.welcome}>Add Todo</Text>
+        <TextInput
+          style={{ height: 45, borderColor: 'gray', borderWidth: 1 }}
+          onSubmitEditing={e => {
+            this.props.createTodo({
+              description: e.nativeEvent.text,
+            });
+          }}
+          keyboardType="default"
+        />
         <View style={styles.instructions}>
-          <TodoList items={this.props.todos.todos} />
+          <TodoList
+            items={this.props.todos}
+            removeTodo={this.props.destroyTodo}
+          />
         </View>
         <Text style={styles.instructions}>
           Press Cmd+R to reload,{'\n'}
@@ -54,7 +62,7 @@ class TodoApp extends Component {
   }
 }
 
-const ConnectedTodos = TodoInterface('todos', TodoApp);
+const ConnectedTodos = TodoInterface('', TodoApp);
 
 class App extends Component {
   render() {
