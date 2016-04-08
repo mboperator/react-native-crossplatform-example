@@ -32,7 +32,8 @@ An opinionated framework **rapidly** developing **dope** web applications.
 | Route      |`levi g route Feed`           |
 | Layout     |`levi g layout SplitPane`     |
 | Component  |`levi g component CoolWidget` |
-| Module     |`levi g module DopeModule`    |
+| Module     |`levi g module dopeModule`    |
+| Scaffold   |`levi g scaffold Todos`       |
 
 ## Generator Output
 
