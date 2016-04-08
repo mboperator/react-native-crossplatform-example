@@ -2,20 +2,26 @@
 
 An opinionated framework for the rapid development of complex web applications.
 
-# CLI
+# CLI Documentation
 
 ## Development
 
-#### Start a new project
-- `levi g project AwesomeSPA`
-
-#### Start Dev Server
-- `levi dev`
-
-#### Build
-- `levi build`
+| Start a new project |`levi g project AwesomeSPA` |
+|---------------------|----------------------------|
+| Start dev server    |`levi dev`                  |
+| Build Project       |`levi build`                |
 
 ## Generators
+
+| Generator  | Command                      |
+|------------|------------------------------|
+| Route      |`levi g route Feed`           |
+| Layout     |`levi g layout SplitPane`     |
+| Component  |`levi g component CoolWidget` |
+| Module     |`levi g module DopeModule`    |
+
+## Generator Output
+
 ### Route
 - `levi g route Feed`
 ```
@@ -26,11 +32,11 @@ created src/routes/Feed/__tests__/handler-test.js
 ```
 
 ### Layout
-- `levi g layout DopeWidget`
+- `levi g layout SplitPane`
 ```
-created src/_shared/layouts/DopeWidget/index.js
-created src/_shared/layouts/DopeWidget/DopeWidget.jsx
-created src/_shared/layouts/DopeWidget/__tests__/DopeWidget-test.js
+created src/_shared/layouts/SplitPane/index.js
+created src/_shared/layouts/SplitPane/SplitPane.jsx
+created src/_shared/layouts/SplitPane/__tests__/SplitPane-test.js
 ```
 
 ### Component
