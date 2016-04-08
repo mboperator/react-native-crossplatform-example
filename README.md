@@ -1,6 +1,20 @@
 # Levi [![Circle CI](https://circleci.com/gh/mboperator/redux-modules/tree/master.svg?style=svg)](https://circleci.com/gh/mboperator/levi/tree/master)
 
-An opinionated framework for the rapid development of complex web applications.
+An opinionated framework **rapidly** developing **dope** web applications.
+
+## Stack
+- View
+  - react
+  - react-router
+- Data
+  - immutable
+  - redux
+  - redux-saga
+  - redux-modules
+- Build
+  - webpack 2
+  - babel 6
+  - yeoman
 
 # CLI Documentation
 
@@ -25,10 +39,19 @@ An opinionated framework for the rapid development of complex web applications.
 ### Route
 - `levi g route Feed`
 ```
+// automatically generates route at /feed/
 modified src/routes/index.js
 created src/routes/Feed/index.js
 created src/routes/Feed/handler.jsx
 created src/routes/Feed/__tests__/handler-test.js
+```
+- `levi g route Users :user_id Detail`
+```
+// automatically generates route at /users/:user_id/detail
+modified src/routes/index.js
+created src/routes/Users/routes/Detail/index.js
+created src/routes/Users/routes/Detail/handler.jsx
+created src/routes/Users/routes/Detail/__tests__/handler-test.js
 ```
 
 ### Layout
@@ -49,14 +72,15 @@ created src/_shared/components/DopeWidget/__tests__/DopeWidget-test.js
 ```
 
 ### Module
-- `levi g module DopeModule`
+- `levi g module dopeModule`
 ```
+// automatically registers module with state under dopeModule key
 modified src/_shared/modules/index.js
-created src/_shared/modules/DopeModule/index.js
-created src/_shared/modules/DopeModule/module.js
-created src/_shared/modules/DopeModule/selector.js
-created src/_shared/modules/DopeModule/dispatch.js
-created src/_shared/modules/DopeModule/Interface.js
-created src/_shared/modules/DopeModule/__tests__/module-test.js
-created src/_shared/modules/DopeModule/__tests__/Interface-test.js
+created src/_shared/modules/dopeModule/index.js
+created src/_shared/modules/dopeModule/module.js
+created src/_shared/modules/dopeModule/selector.js
+created src/_shared/modules/dopeModule/dispatch.js
+created src/_shared/modules/dopeModule/Interface.js
+created src/_shared/modules/dopeModule/__tests__/module-test.js
+created src/_shared/modules/dopeModule/__tests__/Interface-test.js
 ```
