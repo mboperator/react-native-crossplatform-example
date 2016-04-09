@@ -24,8 +24,9 @@ An opinionated framework **easily** developing **dope** applications.
 
 | Start a new project |`levi g project AwesomeSPA` |
 |---------------------|----------------------------|
-| Start dev server    |`levi dev`                  |
-| Build Project       |`levi build`                |
+| Start dev server    |`npm run  web:dev`          |
+| Start dev server    |`npm run  ios:dev`          |
+| Build Project       |`npm run  web:build`        |
 
 ## Generators
 
