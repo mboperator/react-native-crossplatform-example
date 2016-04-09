@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
   },
 });
 
+@TodoInterface('')
 class TodoApp extends Component {
   render() {
     return (
@@ -65,13 +66,11 @@ class TodoApp extends Component {
   }
 }
 
-const ConnectedTodos = TodoInterface('', TodoApp);
-
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <ConnectedTodos />
+        <TodoApp />
       </Provider>
     );
   }
