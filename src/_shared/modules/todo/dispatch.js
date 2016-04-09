@@ -7,6 +7,6 @@ export default function mapDispatch(dispatch) {
       destroyTodo: index => dispatch(actions.destroyTodo({ index })),
       updateTodo: (index, todo) =>
         dispatch(actions.updateTodo({ index, todo })),
-    }
+    },
   };
 }

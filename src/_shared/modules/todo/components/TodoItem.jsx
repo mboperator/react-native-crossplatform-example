@@ -11,8 +11,12 @@ const TodoItem = ({ description, actions, index, checked }) => {
       pad={{ horizontal: 'medium', vertical: 'small' }}
       separator="bottom"
     >
-      <Box justify="left" direction="row">
-        <CheckBox checked={checked} />
+      <Box direction="row">
+        <CheckBox checked={checked}
+          onChange={() => {
+            actions.updateTodo(index, {checked: !checked});
+          }}
+        />
         <Heading tag="h4">
           {description}
         </Heading>

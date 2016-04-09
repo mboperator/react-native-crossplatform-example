@@ -50,7 +50,10 @@ export default class TodoList extends React.Component {
         <Box>
           <List>
             {todos.map((todo, index) =>
-              <TodoItem { ...{ ...todo, actions, index } } />
+              <TodoItem
+                key={`${todo.description} ${index}`}
+                { ...{ ...todo, actions, index } }
+              />
             )}
           </List>
         </Box>
