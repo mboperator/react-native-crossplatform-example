@@ -1,8 +1,6 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { List, fromJS } from 'immutable';
 import createLogger from 'redux-logger';
-
-import { reducer } from './todo';
 
 const logger = createLogger({
   stateTransformer: object => fromJS(object).toJS(),
@@ -15,4 +13,6 @@ const createStoreWithMiddleware = compose(
   applyMiddleware(logger)
 )(createStore);
 
-export default createStoreWithMiddleware(reducer, List());
+export default function generateStore(reducer) {
+  return createStoreWithMiddleware(combineReducers(reducer), List());
+}

@@ -46,7 +46,7 @@ const devConfig = baseConfig.mergeDeep({
 
   debug: true,
 
-  devtool: 'eval-source-map',
+  devtool: '#eval-source-map',
 });
 
 export default devConfig;
