@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Interface as TodoInterface } from 'modules/todo';
-import TodoList from 'modules/todo/components/TodoList';
+import TodoList from 'components/TodoList';
 
 @TodoInterface('todos')
 export default class TodosContainer extends React.Component {
