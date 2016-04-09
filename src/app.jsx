@@ -1,13 +1,14 @@
 import React from 'react';
+import { browserHistory, Router } from 'react-router';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
-import Home from './handlers/Home';
+import routes from './routes';
 import store from './modules/store';
 
 const ExampleApp = () => (
   <Provider store={store}>
-    <Home />
+    <Router history={browserHistory} routes={routes} />
   </Provider>
 );
 
