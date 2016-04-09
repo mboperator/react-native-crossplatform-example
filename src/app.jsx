@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
 import routes from './routes';
-import store from 'modules/store';
+import store from 'modules';
 require('grommet/grommet.min.css');
 
 const ExampleApp = () => (
