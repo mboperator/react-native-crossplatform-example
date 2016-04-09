@@ -11,10 +11,13 @@ import React, {
   TextInput,
   View,
 } from 'react-native';
-import { Interface as TodoInterface } from './_shared/modules/todo';
+import { Interface as TodoInterface } from '../_shared/modules/todo';
 import { Provider } from 'react-redux';
-import TodoList from './ios/components/TodoList';
-import store from './_shared/modules/store';
+import TodoList from './components/TodoList';
+import modules from '../_shared/modules';
+import generateStore from '../_shared/utils/generateStore';
+
+const store = generateStore(modules);
 
 const styles = StyleSheet.create({
   container: {
@@ -41,7 +44,7 @@ class TodoApp extends Component {
         <TextInput
           style={{ height: 45, borderColor: 'gray', borderWidth: 1 }}
           onSubmitEditing={e => {
-            this.props.createTodo({
+            this.props.actions.createTodo({
               description: e.nativeEvent.text,
             });
           }}
@@ -50,7 +53,7 @@ class TodoApp extends Component {
         <View style={styles.instructions}>
           <TodoList
             items={this.props.todos}
-            removeTodo={this.props.destroyTodo}
+            removeTodo={this.props.actions.destroyTodo}
           />
         </View>
         <Text style={styles.instructions}>

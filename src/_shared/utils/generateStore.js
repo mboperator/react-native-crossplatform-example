@@ -14,5 +14,5 @@ const createStoreWithMiddleware = compose(
 )(createStore);
 
 export default function generateStore(reducer) {
-  return createStoreWithMiddleware(combineReducers(reducer), List());
+  return createStoreWithMiddleware(combineReducers(reducer), {todo: List()});
 }
