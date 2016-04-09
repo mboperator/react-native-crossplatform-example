@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 const { array, object, oneOfType } = PropTypes;
 
-import { Sidebar, Header, Menu, Anchor } from 'grommet';
+import { Sidebar, Header, Menu } from 'grommet';
 
 const AppLayout = ({ children }) => (
   <div>
@@ -10,8 +11,8 @@ const AppLayout = ({ children }) => (
         Levi
       </Header>
       <Menu primary={true}>
-        <Anchor>Home</Anchor>
-        <Anchor>About</Anchor>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
       </Menu>
     </Sidebar>
     <section>
