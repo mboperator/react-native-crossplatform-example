@@ -7,6 +7,7 @@ export default {
   component: AppLayout,
   indexRoute: Home,
   childRoutes: [
+    // TODO: Yeoman should put new routes here
     About,
   ],
 };
