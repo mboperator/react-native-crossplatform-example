@@ -4,11 +4,13 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
 import routes from './routes';
-import store from 'modules';
+import modules from 'modules';
+import generateStore from 'utils/generateStore';
+
 require('grommet/grommet.min.css');
 
 const ExampleApp = () => (
-  <Provider store={store}>
+  <Provider store={generateStore(modules)}>
     <Router history={browserHistory} routes={routes} />
   </Provider>
 );
