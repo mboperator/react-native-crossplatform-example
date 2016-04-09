@@ -1,16 +1,12 @@
+import AppLayout from 'layouts/AppLayout';
 import Home from './Home';
 import About from './About';
 
 export default {
-  component: 'div',
+  path: '/',
+  component: AppLayout,
+  indexRoute: Home,
   childRoutes: [
-    {
-      path: '/',
-      component: require('layouts/AppLayout'),
-      childRoutes: [
-        About,
-      ],
-      indexRoute: Home,
-    },
+    About,
   ],
 };

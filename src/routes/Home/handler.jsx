@@ -1,7 +1,7 @@
 import React from 'react';
 
-import TodoList from '../components/TodoList';
-import { Interface as TodoInterface } from '../modules/todo';
+import { Interface as TodoInterface } from 'modules/todo';
+import TodoList from 'modules/todo/components/TodoList';
 
 @TodoInterface('todos')
 export default class TodosContainer extends React.Component {
@@ -15,7 +15,10 @@ export default class TodosContainer extends React.Component {
 
   render() {
     return (
-      <TodoList {...this.props.todos} />
+      <div>
+        Home!
+        <TodoList {...this.props.todos} />
+      </div>
     );
   }
 }

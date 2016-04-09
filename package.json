@@ -20,11 +20,13 @@
   "author": "Marcus Bernales",
   "license": "ISC",
   "dependencies": {
+    "grommet": "^0.5.5",
     "immutable": "^3.7.6",
     "ramda": "^0.19.1",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-redux": "^4.4.1",
+    "react-router": "^2.0.1",
     "redux": "^3.3.1",
     "redux-modules": "0.0.5",
     "reselect": "^2.2.1"
