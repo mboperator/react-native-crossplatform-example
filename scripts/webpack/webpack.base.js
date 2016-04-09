@@ -6,7 +6,7 @@ export default fromJS({
   context: rootPath,
 
   entry: {
-    web: './src/web/app',
+    web: './src/web',
   },
 
   module: {

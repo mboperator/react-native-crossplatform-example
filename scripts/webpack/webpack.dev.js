@@ -10,7 +10,7 @@ const devConfig = baseConfig.mergeDeep({
     web: [
       `webpack-dev-server/client?http://${HOST}:${PORT}`,
       'webpack/hot/dev-server',
-      './src/web/app',
+      './src/web',
     ],
   },
 
