@@ -1,6 +1,6 @@
 # Levi [![Circle CI](https://circleci.com/gh/mboperator/redux-modules/tree/master.svg?style=svg)](https://circleci.com/gh/mboperator/levi/tree/master)
 
-An opinionated framework **easily** developing **dope** web applications.
+An opinionated framework **easily** developing **dope** applications.
 
 ## Stack(ed)
 - View
