@@ -15,10 +15,7 @@ export default class TodosContainer extends React.Component {
 
   render() {
     return (
-      <div>
-        Home!
-        <TodoList {...this.props.todos} />
-      </div>
+      <TodoList {...this.props.todos} />
     );
   }
 }

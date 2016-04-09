@@ -1,25 +1,27 @@
 import React from 'react';
+import { ListItem, Heading, Button } from 'grommet';
 
-const TodoItem = (actions, {id, title, description, checked}, i) => (
-  <li>
-    <div className="checkbox">
-      <input
-        onChange={e =>
-          actions.updateTodo(i, {checked: e.target.checked})
-        }
-        type='checkbox'
-        value={checked}
-      />
-    </div>
-    <p>
+const TodoItem = (
+  actions,
+  { id, title, description, checked },
+  i
+) => (
+  <ListItem
+    align="center"
+    direction="row"
+    justify="between"
+    pad={{ horizontal: 'medium', vertical: 'small' }}
+    separator="bottom"
+  >
+    <Heading tag="h4">
       {description}
-    </p>
+    </Heading>
     <aside>
-      <button onClick={() => actions.destroyTodo(i)}>
+      <Button onClick={() => actions.destroyTodo(i)}>
         Delete Todo
-      </button>
+      </Button>
     </aside>
-  </li>
+  </ListItem>
 );
 
 export default TodoItem;

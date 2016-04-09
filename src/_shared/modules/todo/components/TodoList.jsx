@@ -1,4 +1,5 @@
 import React from 'react';
+import { List, Header, FormField, Button } from 'grommet';
 import { findDOMNode } from 'react-dom';
 import TodoItem from './TodoItem';
 
@@ -12,26 +13,27 @@ export default class TodoList extends React.Component {
     const { todos = [], ... actions } = this.props;
     return (
       <div>
-        <h1>Todo!</h1>
+        <Header>Todo!</Header>
 
         <div>
-          <label>Description</label>
-          <input ref="description" />
+          <FormField label="Description" htmlFor="decription">
+            <input id="description" ref="description" type="text" />
+          </FormField>
 
-          <input
-            type="button"
-            value="Create"
+          <Button
             onClick={() =>
               actions.createTodo({
                 description: findDOMNode(this.refs.description).value,
               })
             }
-          />
+          >
+            Create
+          </Button>
         </div>
 
-        <ul>
+        <List>
           {todos.map(TodoItem.bind(null, actions))}
-        </ul>
+        </List>
       </div>
     );
   }
