@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Header, FormField, Button } from 'grommet';
+import { List, Header, Form, FormField, Button, Box } from 'grommet';
 import { findDOMNode } from 'react-dom';
 import TodoItem from './TodoItem';
 
@@ -9,32 +9,52 @@ export default class TodoList extends React.Component {
     actions: React.PropTypes.object,
   };
 
+  _createTodo(e) {
+    e.preventDefault();
+    const inputNode = findDOMNode(this.refs.description);
+
+    this.props.actions.createTodo({
+      description: inputNode.value,
+    });
+
+    inputNode.value = '';
+  }
+
   render() {
-    const { todos = [], ... actions } = this.props;
+    const { todos = [], actions } = this.props;
     return (
-      <div>
-        <Header>Todo!</Header>
+      <Box
+        justify="center"
+        pad={{
+          horizontal: 'small',
+          vertical: 'small',
+        }}
+      >
+        <Box>
+          <Form onSubmit={this._createTodo.bind(this)}>
+            <Header>Create a Todo</Header>
+            <FormField label="Description" htmlFor="decription">
+              <input id="description" ref="description" type="text" />
+            </FormField>
+          </Form>
+        </Box>
 
-        <div>
-          <FormField label="Description" htmlFor="decription">
-            <input id="description" ref="description" type="text" />
-          </FormField>
-
+        <Box pad={{vertical: "medium"}}>
           <Button
-            onClick={() =>
-              actions.createTodo({
-                description: findDOMNode(this.refs.description).value,
-              })
-            }
+            onClick={this._createTodo.bind(this)}
           >
             Create
           </Button>
-        </div>
+        </Box>
 
-        <List>
-          {todos.map(TodoItem.bind(null, actions))}
-        </List>
-      </div>
+        <Box>
+          <List>
+            {todos.map((todo, index) =>
+              <TodoItem { ...{ ...todo, actions, index } } />
+            )}
+          </List>
+        </Box>
+      </Box>
     );
   }
 }
