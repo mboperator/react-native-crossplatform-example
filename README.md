@@ -1,11 +1,12 @@
 # Levi [![Circle CI](https://circleci.com/gh/mboperator/redux-modules/tree/master.svg?style=svg)](https://circleci.com/gh/mboperator/levi/tree/master)
 
-An opinionated framework **rapidly** developing **dope** web applications.
+An opinionated framework **easily** developing **dope** web applications.
 
-## Stack
+## Stack(ed)
 - View
   - react
   - react-router
+  - grommet
 - Data
   - immutable
   - redux
@@ -13,6 +14,7 @@ An opinionated framework **rapidly** developing **dope** web applications.
   - redux-modules
 - Build
   - webpack 2
+  - css-modules
   - babel 6
   - yeoman
 
