@@ -1,7 +1,7 @@
-import Home from './Home';
-import About from './About';
+import List from './List';
+import Detail from './Detail';
 
 module.exports = {
-  Home,
-  About,
+  List,
+  Detail,
 };

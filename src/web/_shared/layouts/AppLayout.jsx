@@ -16,8 +16,8 @@ const AppLayout = ({ children }) => (
     <Box justify="left" direction="row" full>
       <Sidebar style={{ flexGrow: 1 }}>
         <Menu primary={true}>
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
+          <Link to="/">List</Link>
+          <Link to="/123">Detail</Link>
         </Menu>
       </Sidebar>
       <Box pad="small" full>

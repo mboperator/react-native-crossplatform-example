@@ -3,13 +3,13 @@ import { Route, IndexRoute } from 'react-router';
 
 import AppLayout from 'layouts/AppLayout';
 import {
-  Home,
-  About,
+  List,
+  Detail,
 } from './views';
 
 export default (
   <Route path="/" component={AppLayout}>
-    <IndexRoute component={Home} />
-    <Route path="about" component={About} />
+    <IndexRoute component={List} />
+    <Route path=":event_id" component={Detail} />
   </Route>
 );
