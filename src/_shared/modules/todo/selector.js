@@ -2,6 +2,6 @@
 
 export default function mapState(state) {
   return {
-    todos: [... state.todo.toJS()],
+    data: [... state.todo.toJS()],
   };
 }

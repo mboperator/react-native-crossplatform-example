@@ -53,7 +53,7 @@ class TodoApp extends Component {
         />
         <View style={styles.instructions}>
           <TodoList
-            items={this.props.todos}
+            items={this.props.data}
             removeTodo={this.props.actions.destroyTodo}
           />
         </View>

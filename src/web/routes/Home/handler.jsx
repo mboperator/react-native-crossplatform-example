@@ -9,10 +9,6 @@ export default class TodosContainer extends React.Component {
     todos: React.PropTypes.object,
   };
 
-  componentDidMount() {
-    /* Kickoff Fetch Todos */
-  }
-
   render() {
     return (
       <TodoList {...this.props.todos} />

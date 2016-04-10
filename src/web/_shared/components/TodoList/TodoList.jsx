@@ -5,7 +5,7 @@ import TodoItem from './TodoItem';
 
 export default class TodoList extends React.Component {
   static propTypes = {
-    todos: React.PropTypes.array.isRequired,
+    data: React.PropTypes.array.isRequired,
     actions: React.PropTypes.object,
   };
 
@@ -21,7 +21,7 @@ export default class TodoList extends React.Component {
   }
 
   render() {
-    const { todos = [], actions } = this.props;
+    const { data = [], actions } = this.props;
     return (
       <Box
         justify="center"
@@ -49,7 +49,7 @@ export default class TodoList extends React.Component {
 
         <Box>
           <List>
-            {todos.map((todo, index) =>
+            {data.map((todo, index) =>
               <TodoItem
                 key={`${todo.description} ${index}`}
                 { ...{ ...todo, actions, index } }
