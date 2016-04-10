@@ -1,29 +1,16 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { curry } from 'ramda';
 
 import dispatch from './dispatch';
 import selector from './selector';
+import combineNamespacedProps from 'utils/combineNamespacedProps';
 
-function createInterface(namespace, Component) {
-  const Interface = props => {
-    let formattedProps;
-
-    if (namespace) {
-      formattedProps = { [namespace]: { ...props } };
-    } else {
-      formattedProps = props;
-    }
-
-    return (
-      <Component {...formattedProps} />
-    );
-  };
-
+function createInterface(namespace = '', Component) {
   return connect(
     selector,
-    dispatch
-  )(Interface);
+    dispatch,
+    combineNamespacedProps(namespace)
+  )(Component);
 }
 
 export default curry(createInterface);
