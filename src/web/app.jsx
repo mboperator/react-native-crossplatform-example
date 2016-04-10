@@ -8,7 +8,9 @@ import generateStore from 'utils/generateStore';
 
 const App = () => (
   <Provider store={generateStore(modules)}>
-    <Router history={browserHistory} routes={routes} />
+    <Router history={browserHistory}>
+      {routes}
+    </Router>
   </Provider>
 );
 
