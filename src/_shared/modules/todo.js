@@ -9,7 +9,7 @@ import { createModule } from 'redux-modules';
 import { PropTypes } from 'react';
 import { fromJS, List } from 'immutable';
 
-export default createModule({
+const module = createModule({
   name: 'todos',
   initialState: List(),
   transformations: [
@@ -45,3 +45,6 @@ export default createModule({
     },
   ],
 });
+
+export const { actions, constants, reducer } = module;
+export default module;
