@@ -1,8 +1,8 @@
-import { reducer } from './todo';
+import todoModule from './todo';
 
 const reducers = {
   // TODO: Yeoman should put new modules here
-  todo: reducer,
+  todos: todoModule.reducer,
 };
 
 export default reducers;

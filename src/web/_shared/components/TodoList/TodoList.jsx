@@ -9,12 +9,11 @@ export default class TodoList extends React.Component {
     actions: React.PropTypes.object,
   };
 
-  _createTodo(e) {
+  _create = (e) => {
     e.preventDefault();
     const inputNode = findDOMNode(this.refs.description);
-
-    this.props.actions.createTodo({
-      description: inputNode.value,
+    this.props.actions.create({
+      todo: { description: inputNode.value },
     });
 
     inputNode.value = '';
@@ -31,7 +30,7 @@ export default class TodoList extends React.Component {
         }}
       >
         <Box>
-          <Form onSubmit={this._createTodo.bind(this)}>
+          <Form onSubmit={this._create}>
             <Header>Create a Todo</Header>
             <FormField label="Description" htmlFor="decription">
               <input id="description" ref="description" type="text" />
@@ -39,9 +38,9 @@ export default class TodoList extends React.Component {
           </Form>
         </Box>
 
-        <Box pad={{vertical: "medium"}}>
+        <Box pad={{ vertical: 'medium' }}>
           <Button
-            onClick={this._createTodo.bind(this)}
+            onClick={this._create}
           >
             Create
           </Button>
