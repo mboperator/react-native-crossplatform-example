@@ -5,16 +5,16 @@
  * ]
  */
 
-import createModule from 'redux-modules';
+import { createModule } from 'redux-modules';
 import { PropTypes } from 'react';
 import { fromJS, List } from 'immutable';
 
-export const { actions, reducer } = createModule({
+const module = createModule({
   name: 'todos',
   initialState: List(),
   transformations: [
     {
-      action: 'CREATE_TODO',
+      action: 'CREATE',
       payloadTypes: {
         todo: PropTypes.shape({
           description: PropTypes.string.isRequired,
@@ -24,7 +24,7 @@ export const { actions, reducer } = createModule({
         state.push(fromJS(todo)),
     },
     {
-      action: 'DESTROY_TODO',
+      action: 'DESTROY',
       payloadTypes: {
         index: PropTypes.number.isRequired,
       },
@@ -32,7 +32,7 @@ export const { actions, reducer } = createModule({
         state.delete(index),
     },
     {
-      action: 'UPDATE_TODO',
+      action: 'UPDATE',
       payloadTypes: {
         index: PropTypes.number.isRequired,
         todo: PropTypes.shape({
@@ -46,4 +46,5 @@ export const { actions, reducer } = createModule({
   ],
 });
 
-export default reducer;
+export const { actions, constants, reducer } = module;
+export default module;

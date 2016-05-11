@@ -1,17 +1,16 @@
 import React from 'react';
-
-import { Interface as TodoInterface } from 'modules/todo';
+import { connectModule } from 'redux-modules';
+import todoModule from 'modules/todo';
 import TodoList from 'components/TodoList';
 
-@TodoInterface('todos')
-export default class TodosContainer extends React.Component {
-  static propTypes = {
-    todos: React.PropTypes.object,
+const selector = state => {
+  return {
+    data: state.todos.toJS(),
   };
+};
 
-  render() {
-    return (
-      <TodoList {...this.props.todos} />
-    );
-  }
-}
+export default connectModule(
+  selector,
+  todoModule,
+  ({ todos }) => <TodoList {...todos} />
+);

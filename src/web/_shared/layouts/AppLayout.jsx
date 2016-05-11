@@ -13,7 +13,7 @@ const AppLayout = ({ children }) => (
     >
       Levi
     </Header>
-    <Box justify="left" direction="row" full>
+    <Box direction="row" full>
       <Sidebar style={{ flexGrow: 1 }}>
         <Menu primary={true}>
           <Link to="/">Home</Link>
