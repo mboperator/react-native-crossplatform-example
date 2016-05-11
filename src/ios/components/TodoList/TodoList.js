@@ -7,7 +7,7 @@ import React, {
 } from 'react-native';
 
 const TodoItem = actions => ({description, index}) => (
-  <TouchableHighlight onPress={actions.removeTodo.bind(null, 0)}>
+  <TouchableHighlight onPress={actions.removeTodo.bind(null, {index: 0})}>
     <View>
       <Text>
         {description}
