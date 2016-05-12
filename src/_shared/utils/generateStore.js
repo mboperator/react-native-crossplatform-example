@@ -1,6 +1,9 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { fromJS } from 'immutable';
 import createLogger from 'redux-logger';
+import createSagaMiddleware from 'redux-saga';
+
+const sagaMiddleware = createSagaMiddleware();
 
 const logger = createLogger({
   stateTransformer: object => fromJS(object).toJS(),
@@ -10,9 +13,16 @@ const logger = createLogger({
 });
 
 const createStoreWithMiddleware = compose(
-  applyMiddleware(logger)
+  applyMiddleware(logger, sagaMiddleware)
 )(createStore);
 
-export default function generateStore(reducer) {
-  return createStoreWithMiddleware(combineReducers(reducer), {});
+export default function generateStore(reducer, sagas = false) {
+  const store = createStoreWithMiddleware(
+    combineReducers(reducer),
+    {}
+  );
+
+  sagas && sagaMiddleware.run(sagas);
+
+  return store;
 }

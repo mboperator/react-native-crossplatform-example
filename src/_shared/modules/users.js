@@ -26,7 +26,7 @@ const module = createModule({
     },
     {
       action: 'FETCH_SUCCESS',
-      payload: {
+      payloadTypes: {
         data: arrayOf(
           shape({
             id: string,
