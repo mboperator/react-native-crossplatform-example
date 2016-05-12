@@ -10,6 +10,6 @@ import {
 export default (
   <Route path="/" component={AppLayout}>
     <IndexRoute component={Home} />
-    <Route path="about" component={About} />
+    <Route path="users" component={About} />
   </Route>
 );
