@@ -1,5 +1,5 @@
 /*
- * state = [
+ * state.todos = [
  *   { description, index },
  *   { description, index },
  * ]
