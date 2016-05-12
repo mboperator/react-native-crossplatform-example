@@ -1,8 +1,8 @@
 import { takeLatest } from 'redux-saga';
 import { put } from 'redux-saga/effects';
 
-import * as userApi from '../services/user';
-import { actions, constants } from '../modules/users';
+import * as userApi from '../services/userApi';
+import { actions, constants } from '../modules/user';
 
 function* handleFetchEvents() {
   try {
