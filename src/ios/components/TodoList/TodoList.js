@@ -1,19 +1,45 @@
 import React, {
   View,
   Component,
+  StyleSheet,
   ListView,
   TouchableHighlight,
   Text,
 } from 'react-native';
 
-const TodoItem = actions => ({description, index}) => (
-  <TouchableHighlight onPress={actions.removeTodo.bind(null, {index: 0})}>
-    <View>
-      <Text>
+const styles = StyleSheet.create({
+  item: {
+    flex: 1,
+    height: 50,
+    width: 380,
+    paddingTop: 15,
+    alignItems: 'flex-start',
+    paddingLeft: 10,
+    paddingRight: 10,
+    flexDirection: 'row',
+  },
+  left: {
+    flex: 2,
+  },
+  right: {
+    flex: 1,
+    textAlign: 'right',
+  },
+});
+
+const TodoItem = actions => ({ description, index }) => (
+  <TouchableHighlight
+    activeOpacity={1}
+    underlayColor="indigo"
+    onPress={() => actions.removeTodo({ index: 0 })}
+  >
+    <View style={styles.item}>
+      <Text style={styles.left}>
         {description}
       </Text>
-      <View>
-      </View>
+      <Text style={styles.right}>
+        Another one
+      </Text>
     </View>
   </TouchableHighlight>
 );

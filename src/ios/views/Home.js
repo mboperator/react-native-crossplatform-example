@@ -16,7 +16,9 @@ import todoModule from '../../_shared/modules/todo';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    paddingTop: 25,
+    paddingLeft: 15,
+    paddingRight: 15,
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
@@ -26,13 +28,20 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   instructions: {
+    paddingTop: 10,
     marginBottom: 5,
+  },
+  text: {
+    height: 45,
+    borderColor: 'gray',
+    borderWidth: 1,
+    padding: 10,
   },
 });
 
 const selector = state => {
   return {
-    data: state.todos.toJS(),
+    data: state.todos.toJS() || [],
   };
 };
 
@@ -50,19 +59,22 @@ class TodoApp extends Component {
   };
 
   render() {
-    const { actions, data } = this.props.todos;
+    const { actions = {}, data = [] } = this.props.todos || {};
 
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Add Todo</Text>
+        <Text style={styles.welcome}>tada.list</Text>
         <TextInput
-          style={{ height: 45, borderColor: 'gray', borderWidth: 1 }}
+          ref="todoInput"
+          style={styles.text}
+          keyboardType="default"
           onSubmitEditing={e => {
             actions.create({
               todo: { description: e.nativeEvent.text },
             });
+            this.refs.todoInput.clear();
+            setTimeout(this.refs.todoInput.focus, 0);
           }}
-          keyboardType="default"
         />
         <View style={styles.instructions}>
           <TodoList
@@ -70,10 +82,6 @@ class TodoApp extends Component {
             removeTodo={actions.destroy}
           />
         </View>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
       </View>
     );
   }
