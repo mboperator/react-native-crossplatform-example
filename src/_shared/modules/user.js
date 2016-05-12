@@ -12,13 +12,13 @@
 
 import { createModule } from 'redux-modules';
 import { PropTypes } from 'react';
-import { fromJS, List } from 'immutable';
+import { fromJS, Map } from 'immutable';
 
 const { shape, string, arrayOf } = PropTypes;
 
 const module = createModule({
   name: 'users',
-  initialState: List(),
+  initialState: Map(),
   transformations: [
     {
       action: 'FETCH',

@@ -31,8 +31,8 @@ const exampleData = [
 
 export function fetch() {
   return new Promise((resolve) => {
-    setTimeout(300, () => {
+    setTimeout(() => {
       resolve({ data: exampleData });
-    });
+    }, 300);
   });
 }

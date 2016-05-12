@@ -14,7 +14,7 @@ function* handleFetchEvents() {
 }
 
 export default function* userSagas() {
-  yield* [
+  yield [
     takeLatest(constants.fetch, handleFetchEvents),
   ];
 }
