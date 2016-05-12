@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connectModule } from 'redux-modules';
 import userModule from 'modules/user';
-import { Tiles, Tile, Header, Spinning } from 'grommet';
+import { Tiles, Tile, Header } from 'grommet';
 
 const { shape, array, func, bool } = PropTypes;
 
