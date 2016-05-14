@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
+  TextInput,
 } from 'react-native';
 
 import { connectModule } from 'redux-modules';
@@ -16,18 +17,26 @@ const selector = state => {
 
 @connectModule(selector, todoModule)
 export default class App extends Component {
+  componentDidMount() {
+    const { actions = {} } = this.props.todos;
+    actions.create({ todo: { description: 'Hello' } });
+  }
+
   render() {
-    const { actions = {}, data = [] } = this.props.todos = {};
+    const { actions = {}, data = [] } = this.props.todos || {};
     return (
       <View style={styles.container}>
+        <TextInput
+          style={{ height: 45, borderColor: 'gray', borderWidth: 1 }}
+          onSubmitEditing={e => {
+            actions.create({
+              todo: { description: e.nativeEvent.text },
+            });
+          }}
+          keyboardType="default"
+        />
         <Text style={styles.welcome}>
           {JSON.stringify(data)}
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Shake or press menu button for dev menu
         </Text>
       </View>
     );
