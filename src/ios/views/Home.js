@@ -37,7 +37,7 @@ const selector = state => {
 };
 
 @connectModule(selector, todoModule)
-class TodoApp extends Component {
+export default class TodoApp extends Component {
   static propTypes = {
     todos: shape({
       actions: shape({
@@ -50,7 +50,7 @@ class TodoApp extends Component {
   };
 
   render() {
-    const { actions = {}, data = [] } = this.props.todos = {};
+    const { actions = {}, data = [] } = this.props.todos || {};
 
     return (
       <View style={styles.container}>
@@ -78,5 +78,3 @@ class TodoApp extends Component {
     );
   }
 }
-
-export default TodoApp;
