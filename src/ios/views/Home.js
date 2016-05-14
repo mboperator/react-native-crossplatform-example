@@ -37,7 +37,7 @@ const selector = state => {
 };
 
 @connectModule(selector, todoModule)
-class TodoApp extends Component {
+export default class TodoApp extends Component {
   static propTypes = {
     todos: shape({
       actions: shape({
@@ -78,5 +78,3 @@ class TodoApp extends Component {
     );
   }
 }
-
-export default TodoApp;

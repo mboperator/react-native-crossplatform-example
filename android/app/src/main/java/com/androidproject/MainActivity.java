@@ -35,7 +35,7 @@ public class MainActivity extends ReactActivity {
 
     @Override
     protected String getJSMainModuleName() {
-        return "index.android";
+        return "src/android/index";
     }
     /**
      * A list of packages used by the app. If the app uses additional views
