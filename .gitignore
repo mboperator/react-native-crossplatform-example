@@ -1,3 +1,4 @@
+android/local.properties
 *.iml
 android/.gradle
 android/.idea
