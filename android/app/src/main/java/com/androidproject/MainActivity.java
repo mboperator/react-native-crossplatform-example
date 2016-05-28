@@ -30,12 +30,12 @@ public class MainActivity extends ReactActivity {
 
     @Override
     protected String getBundleAssetName() {
-        return "src/android/index";
+        return "src/mobile/index";
     }
 
     @Override
     protected String getJSMainModuleName() {
-        return "src/android/index";
+        return "src/mobile/index";
     }
     /**
      * A list of packages used by the app. If the app uses additional views
