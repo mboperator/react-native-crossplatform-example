@@ -6,4 +6,4 @@
 import { AppRegistry } from 'react-native';
 
 import App from './App';
-AppRegistry.registerComponent('TodoApp', () => App);
+AppRegistry.registerComponent('LeviApp', () => App);
