@@ -1,5 +1,5 @@
 import { createModule } from 'redux-modules';
-import { Map } from 'immutable';
+import { Map, fromJS } from 'immutable';
 import { v4 } from 'uuid';
 
 export default createModule({
@@ -9,14 +9,24 @@ export default createModule({
     {
       action: 'CREATE',
       reducer: (state, { payload }) => {
-        const id = v4();
-        return state.collection.set(id, { id, ... payload });
+        const location = { id: v4(), ... payload };
+        return state.collection.set(location.id, fromJS(location));
       },
     },
     {
       action: 'DESTROY',
       reducer: (state, { payload: { id } }) =>
         state.collection.delete(id),
+    },
+    {
+      action: 'UPDATE',
+      reducer: (state, { payload: { id, updates } }) =>
+        state.collection.merge(id, fromJS(updates)),
+    },
+    {
+      action: 'HYDRATE',
+      reducer: (state, { payload }) =>
+        state.set('collection', fromJS(payload)),
     },
   ],
 });
