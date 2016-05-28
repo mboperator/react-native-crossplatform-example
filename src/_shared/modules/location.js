@@ -10,18 +10,18 @@ export default createModule({
       action: 'CREATE',
       reducer: (state, { payload }) => {
         const location = { id: v4(), ... payload };
-        return state.collection.set(location.id, fromJS(location));
+        return state.setIn(['collection', location.id], fromJS(location));
       },
     },
     {
       action: 'DESTROY',
       reducer: (state, { payload: { id } }) =>
-        state.collection.delete(id),
+        state.deleteIn(['collection', id]),
     },
     {
       action: 'UPDATE',
       reducer: (state, { payload: { id, updates } }) =>
-        state.collection.merge(id, fromJS(updates)),
+        state.mergeIn(['collection', id], fromJS(updates)),
     },
     {
       action: 'HYDRATE',
