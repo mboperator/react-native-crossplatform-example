@@ -1,4 +1,4 @@
-## Native
+# Native
 
 ### Prerequisites
 - Homebrew
