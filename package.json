@@ -5,9 +5,9 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha  --compilers js:babel-register tests/",
-    "web:dev": "node -r babel-core/register scripts/webpack",
-    "web:build": "babel src --out-dir lib",
-    "mobile:dev": "node node_modules/react-native/local-cli/cli.js start"
+    "build:web": "babel src --out-dir lib",
+    "dev:web": "node -r babel-core/register scripts/webpack",
+    "dev:mobile": "node node_modules/react-native/local-cli/cli.js start"
   },
   "keywords": [
     "redux",
