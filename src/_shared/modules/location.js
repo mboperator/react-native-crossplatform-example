@@ -5,6 +5,7 @@ import { v4 } from 'uuid';
 const api = {};
 const session = {};
 const log = {};
+const async, parallel = () => {};
 
 
 export default createModule({
@@ -17,19 +18,16 @@ export default createModule({
         const location = { id: v4(), ... payload };
         return state.setIn(['collection', location.id], fromJS(location));
       },
-      effects: (actions, { payload: { id } }) => [
+      effects: (actions, { payload }) => parallel([
         /* Async effect */
-        [
-          // Async function
-          api.create(id),
-          // Success Effect(s)
-          [actions.createSuccess, session.actions.updateLocationCount],
-          // Failure Effect
+        async(
+          api.create(payload),
+          parallel([actions.createSuccess, session.actions.updateLocationCount]),
           actions.createFailure,
-        ],
+        ),
         /* Sync effect */
-        log.action('create', id),
-      ],
+        log.action('create', payload),
+      ]),
     },
     {
       action: 'CREATE_SUCCESS',
