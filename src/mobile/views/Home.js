@@ -7,41 +7,19 @@ import {
 } from 'react-native';
 
 import { connectModule } from 'redux-modules';
-import todoModule from '../../_shared/modules/todo';
+import { createSelector, createStructuredSelector } from 'reselect';
+import locationModule from '../../_shared/modules/location';
+import { Map } from 'immutable';
 
-const selector = state => {
-  return {
-    data: state.todos.toJS(),
-  };
-};
+const locationsSelector = state => state.location;
+const collectionSelector = createSelector(
+  locationsSelector,
+  locations => locations.get('collection', Map()).toList().toJS()
+);
+const selector = createStructuredSelector({
+  collection: collectionSelector,
+});
 
-@connectModule(selector, todoModule)
-export default class App extends Component {
-  componentDidMount() {
-    const { actions = {} } = this.props.todos;
-    actions.create({ todo: { description: 'Hello' } });
-  }
-
-  render() {
-    const { actions = {}, data = [] } = this.props.todos || {};
-    return (
-      <View style={styles.container}>
-        <TextInput
-          style={{ height: 45, borderColor: 'gray', borderWidth: 1 }}
-          onSubmitEditing={e => {
-            actions.create({
-              todo: { description: e.nativeEvent.text },
-            });
-          }}
-          keyboardType="default"
-        />
-        <Text style={styles.welcome}>
-          {JSON.stringify(data)}
-        </Text>
-      </View>
-    );
-  }
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -61,3 +39,34 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+
+
+@connectModule(selector, locationModule)
+export default class App extends Component {
+  componentDidMount() {
+    const { actions = {} } = this.props.locations;
+    actions.create({ description: 'Hello' });
+  }
+
+  render() {
+    const { actions = {}, collection = [] } = this.props.locations || {};
+    console.log('My props', this.props);
+    return (
+      <View style={styles.container}>
+        <TextInput
+          style={{ height: 45, borderColor: 'gray', borderWidth: 1 }}
+          onSubmitEditing={e => {
+            actions.create({ description: e.nativeEvent.text });
+          }}
+          keyboardType="default"
+        />
+        <Text style={styles.welcome}>
+          Setting module {locationModule.name}
+        </Text>
+        <Text style={styles.welcome}>
+          {JSON.stringify(collection)}
+        </Text>
+      </View>
+    );
+  }
+}
