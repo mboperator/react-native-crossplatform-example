@@ -25,8 +25,19 @@ export default createModule({
     },
     {
       action: 'HYDRATE',
+      reducer: state => state.set('_loading', true),
+    },
+    {
+      action: 'HYDRATE_SUCCESS',
       reducer: (state, { payload }) =>
         state.set('collection', fromJS(payload)),
+    },
+    {
+      action: 'HYDRATE_ERROR',
+      reducer: (state, { payload }) =>
+        state
+        .set('_loading', 'false')
+        .set('_error', payload),
     },
   ],
 });
