@@ -1,21 +1,7 @@
-import { takeLatest } from 'redux-saga';
-import { put } from 'redux-saga/effects';
-
-import Loc from '../modules/location';
-
-import getLocation from '../services/geolocation';
-
-function* handleLocationCreate() {
-  const location = yield getLocation();
-  yield put( Loc.actions.log(location) );
-}
-
-function* locationCreate() {
-  yield takeLatest(Loc.constants.create, handleLocationCreate);
-}
+import location from './location';
 
 export default function* root() {
   yield [
-    locationCreate(),
+    location(),
   ];
 }

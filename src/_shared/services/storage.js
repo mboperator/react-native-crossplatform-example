@@ -26,7 +26,7 @@ const log = ({ type, args }) => {
 };
 
 class Storage {
-  constructor(params) {
+  constructor() {
     this.adapter = platformSpecific({ web, mobile });
   }
 
