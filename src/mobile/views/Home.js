@@ -10,6 +10,7 @@ import { connectModule } from 'redux-modules';
 import { createSelector, createStructuredSelector } from 'reselect';
 import locationModule from '../../_shared/modules/location';
 import { Map } from 'immutable';
+import storage from '../../_shared/services/storage';
 
 const locationsSelector = state => state.locations;
 const collectionSelector = createSelector(
@@ -45,12 +46,17 @@ const styles = StyleSheet.create({
 export default class App extends Component {
   componentDidMount() {
     const { actions = {} } = this.props.locations;
-    actions.create({ description: 'Hello' });
+
+    storage
+      .get('test')
+      .then(locations => {
+        if (!locations) { return; }
+        actions.hydrate(locations);
+      });
   }
 
   render() {
     const { actions = {}, collection = [] } = this.props.locations || {};
-    console.log('My props', this.props);
     return (
       <View style={styles.container}>
         <TextInput

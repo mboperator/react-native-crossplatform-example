@@ -1,24 +1,24 @@
 'use strict';
 
-var webpack = require('webpack')
+const webpack = require('webpack');
 
-var env = process.env.NODE_ENV
-var config = {
+const env = process.env;
+const config = {
   module: {
     loaders: [
       { test: /\.js$/, loaders: ['babel-loader'], exclude: /node_modules/ }
-    ]
+    ],
   },
   output: {
     library: 'ReduxModules',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(env)
-    })
-  ]
+      'process.env': JSON.stringify(env),
+    }),
+  ],
 };
 
 if (env === 'production') {
@@ -29,10 +29,10 @@ if (env === 'production') {
         unsafe: true,
         unsafe_comps: true,
         screw_ie8: true,
-        warnings: false
-      }
+        warnings: false,
+      },
     })
-  )
+  );
 }
 
-module.exports = config
+module.exports = config;

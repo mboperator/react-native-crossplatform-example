@@ -3,6 +3,7 @@ import baseConfig from './webpack.base';
 
 const HOST = 'localhost';
 const PORT = '8080';
+const env = { WEB: true };
 
 const devConfig = baseConfig.mergeDeep({
 
@@ -43,6 +44,9 @@ const devConfig = baseConfig.mergeDeep({
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(env),
+    }),
   ],
 
   debug: true,
