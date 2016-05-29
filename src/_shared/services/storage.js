@@ -1,4 +1,5 @@
 import { AsyncStorage } from 'react-native';
+import platformSpecific from '../utils/platformSpecific';
 
 const mobile = {
   setItem(key, payload) {
@@ -20,24 +21,13 @@ const web = {
   },
 };
 
-const getAdapter = () => {
-  let Adapter = {};
-  if (!process.env.WEB) {
-    Adapter = mobile;
-  }
-  else {
-    Adapter = web;
-  }
-  return Adapter;
-};
-
 const log = ({ type, args }) => {
   console.log(`STORAGE::${type}`, args);
 };
 
 class Storage {
   constructor(params) {
-    this.adapter = getAdapter();
+    this.adapter = platformSpecific({ web, mobile });
   }
 
   set(key, payload) {
