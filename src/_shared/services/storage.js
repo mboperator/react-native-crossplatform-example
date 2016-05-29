@@ -1,3 +1,5 @@
+import React from 'react-native';
+const Platform = React.Platform;
 import { AsyncStorage } from 'react-native';
 
 const log = ({ type, args }) => {
@@ -5,9 +7,9 @@ const log = ({ type, args }) => {
 };
 
 class Storage {
-  // constructor(params) {
-
-  // }
+  constructor(params) {
+    console.log('Platform', Platform, Platform.OS);
+  }
 
   set(key, payload) {
     log({ type: 'set', args: { key, payload } });
