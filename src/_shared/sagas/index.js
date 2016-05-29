@@ -3,8 +3,11 @@ import { put } from 'redux-saga/effects';
 
 import Loc from '../modules/location';
 
+import getLocation from '../services/geolocation';
+
 function* handleLocationCreate() {
-  yield put(Loc.actions.log());
+  const location = yield getLocation();
+  yield put( Loc.actions.log(location) );
 }
 
 function* locationCreate() {
