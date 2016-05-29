@@ -14,8 +14,10 @@ export default createModule({
       },
     },
     {
-      action: 'LOG',
-      reducer: state => state,
+      action: 'SET_LOCATION',
+      reducer: (state, { payload: location}) => {
+        return state.set('region', fromJS(location.coords));
+      }
     },
     {
       action: 'DESTROY',

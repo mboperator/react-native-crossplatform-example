@@ -7,7 +7,7 @@ import getLocation from '../services/geolocation';
 
 function* handleLocationCreate() {
   const location = yield getLocation();
-  yield put( Loc.actions.log(location) );
+  yield put( Loc.actions.setLocation(location) );
 }
 
 function* locationCreate() {

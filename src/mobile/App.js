@@ -8,7 +8,6 @@ const store = generateStore(modules);
 import sagas from '../_shared/sagas';
 store.runSaga(sagas);
 
-console.log("!");
 const ConnectedApp = () => (
   <Provider store={store}>
     <Home />
