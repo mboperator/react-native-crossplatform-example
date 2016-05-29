@@ -14,6 +14,10 @@ export default createModule({
       },
     },
     {
+      action: 'LOG',
+      reducer: state => state,
+    },
+    {
       action: 'DESTROY',
       reducer: (state, { payload: { id } }) =>
         state.deleteIn(['collection', id]),
