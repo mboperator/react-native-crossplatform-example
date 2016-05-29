@@ -2,6 +2,11 @@ import { createModule } from 'redux-modules';
 import { Map, fromJS } from 'immutable';
 import { v4 } from 'uuid';
 
+const api = {};
+const session = {};
+const log = {};
+
+
 export default createModule({
   name: 'locations',
   initialState: Map(),
@@ -12,25 +17,30 @@ export default createModule({
         const location = { id: v4(), ... payload };
         return state.setIn(['collection', location.id], fromJS(location));
       },
+      effects: (actions, { payload: { id } }) => [
+        /* Async effect */
+        [
+          // Async function
+          api.create(id),
+          // Success Effect(s)
+          [actions.createSuccess, session.actions.updateLocationCount],
+          // Failure Effect
+          actions.createFailure,
+        ],
+        /* Sync effect */
+        log.action('create', id),
+      ],
     },
     {
-      action: 'LOG',
-      reducer: state => state,
+      action: 'CREATE_SUCCESS',
+      reducer: state => state.set('_loading', false),
     },
     {
-      action: 'DESTROY',
-      reducer: (state, { payload: { id } }) =>
-        state.deleteIn(['collection', id]),
-    },
-    {
-      action: 'UPDATE',
-      reducer: (state, { payload: { id, updates } }) =>
-        state.mergeIn(['collection', id], fromJS(updates)),
-    },
-    {
-      action: 'HYDRATE',
+      action: 'CREATE_FAILURE',
       reducer: (state, { payload }) =>
-        state.set('collection', fromJS(payload)),
+        state
+        .set('_loading', false)
+        .set('_errors', payload),
     },
   ],
 });
