@@ -5,8 +5,12 @@ import storage from '../services/storage';
 import getLocation from '../services/geolocation';
 
 function* create({ payload }) {
-  const location = yield getLocation();
-  yield put(loc.actions.update({ id: payload.id, updates: { location } }));
+  try {
+    const location = yield getLocation();
+    yield put(loc.actions.update({ id: payload.id, updates: { location } }));
+  } catch (e) {
+
+  }
 }
 
 function* hydrate() {
