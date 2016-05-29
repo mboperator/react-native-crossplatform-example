@@ -5,22 +5,25 @@ import TodoItem from './TodoItem';
 
 export default class TodoList extends React.Component {
   static propTypes = {
-    data: React.PropTypes.array.isRequired,
+    collection: React.PropTypes.array.isRequired,
     actions: React.PropTypes.object,
   };
 
-  _create = (e) => {
+  constructor(props) {
+    super(props);
+    this._create = this._create.bind(this);
+  }
+
+  _create(e) {
     e.preventDefault();
     const inputNode = findDOMNode(this.refs.description);
-    this.props.actions.create({
-      todo: { description: inputNode.value },
-    });
+    this.props.actions.create({ description: inputNode.value });
 
     inputNode.value = '';
   }
 
   render() {
-    const { data = [], actions } = this.props;
+    const { collection = [], actions } = this.props;
     return (
       <Box
         justify="center"
@@ -48,7 +51,7 @@ export default class TodoList extends React.Component {
 
         <Box>
           <List>
-            {data.map((todo, index) =>
+            {collection.map((todo, index) =>
               <TodoItem
                 key={`${todo.description} ${index}`}
                 { ...{ ...todo, actions, index } }

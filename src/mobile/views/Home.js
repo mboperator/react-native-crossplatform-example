@@ -11,7 +11,7 @@ import { createSelector, createStructuredSelector } from 'reselect';
 import locationModule from '../../_shared/modules/location';
 import { Map } from 'immutable';
 
-const locationsSelector = state => state.location;
+const locationsSelector = state => state.locations;
 const collectionSelector = createSelector(
   locationsSelector,
   locations => locations.get('collection', Map()).toList().toJS()

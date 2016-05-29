@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 const { number, string, bool, object } = PropTypes;
 import { ListItem, Heading, Button, Box, CheckBox } from 'grommet';
 
-const TodoItem = ({ description, actions, index, checked }) => (
+const TodoItem = ({ description, actions, id, checked }) => (
   <ListItem
     align="center"
     direction="row"
@@ -13,7 +13,7 @@ const TodoItem = ({ description, actions, index, checked }) => (
     <Box direction="row">
       <CheckBox checked={checked}
         onChange={() => {
-          actions.update({ index, todo: { checked: !checked } });
+          actions.update({ id, todo: { checked: !checked } });
         }}
       />
       <Heading tag="h4">
@@ -21,7 +21,7 @@ const TodoItem = ({ description, actions, index, checked }) => (
       </Heading>
     </Box>
     <Box>
-      <Button onClick={() => actions.destroy({ index })}>
+      <Button onClick={() => actions.destroy({ id })}>
         Delete Todo
       </Button>
     </Box>
@@ -29,10 +29,9 @@ const TodoItem = ({ description, actions, index, checked }) => (
 );
 
 TodoItem.propTypes = {
-  id: number,
   description: string,
   checked: bool,
-  index: number,
+  id: string,
   actions: object,
 };
 

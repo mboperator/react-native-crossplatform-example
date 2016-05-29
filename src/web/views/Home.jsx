@@ -1,16 +1,18 @@
 import React from 'react';
 import { connectModule } from 'redux-modules';
-import todoModule from 'modules/todo';
+import locationModule from 'modules/location';
 import TodoList from 'components/TodoList';
+
+import { Map } from 'immutable';
 
 const selector = state => {
   return {
-    data: state.todos.toJS(),
+    collection: state.locations.get('collection', Map()).toList().toJS(),
   };
 };
 
 export default connectModule(
   selector,
-  todoModule,
-  ({ todos }) => <TodoList {...todos} />
+  locationModule,
+  ({ locations }) => <TodoList {...locations} />
 );
