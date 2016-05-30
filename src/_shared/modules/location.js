@@ -15,9 +15,8 @@ export default createModule({
     },
     {
       action: 'SET_LOCATION',
-      reducer: (state, { payload: location}) => {
-        return state.set('region', fromJS(location.coords));
-      }
+      reducer: (state, { payload: location }) =>
+        state.set('region', fromJS(location.coords)),
     },
     {
       action: 'DESTROY',
@@ -31,8 +30,19 @@ export default createModule({
     },
     {
       action: 'HYDRATE',
+      reducer: state => state.set('_loading', true),
+    },
+    {
+      action: 'HYDRATE_SUCCESS',
       reducer: (state, { payload }) =>
         state.set('collection', fromJS(payload)),
+    },
+    {
+      action: 'HYDRATE_ERROR',
+      reducer: (state, { payload }) =>
+        state
+        .set('_loading', 'false')
+        .set('_error', payload),
     },
   ],
 });

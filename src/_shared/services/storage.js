@@ -11,13 +11,13 @@ const mobile = {
 };
 
 const web = {
-  setItem(key) {
-    console.log('WEB', key);
-    return new Promise(resolve => resolve(null));
+  setItem(key, payload) {
+    localStorage.setItem(key, JSON.stringify(payload));
+    return new Promise(resolve => resolve({ key, payload }));
   },
   getItem(key) {
-    console.log('WEB', key);
-    return new Promise(resolve => resolve(null));
+    const item = localStorage.getItem(key);
+    return new Promise(resolve => resolve(JSON.parse(item)));
   },
 };
 
@@ -26,7 +26,7 @@ const log = ({ type, args }) => {
 };
 
 class Storage {
-  constructor(params) {
+  constructor() {
     this.adapter = platformSpecific({ web, mobile });
   }
 
