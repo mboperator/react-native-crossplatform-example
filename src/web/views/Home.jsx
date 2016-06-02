@@ -18,7 +18,7 @@ const selector = createStructuredSelector({
 @connectModule(selector, locationModule)
 export default class Home extends React.Component {
   render() {
-    const { locations } = this.props;
-    return( <TodoList {...locations} /> );
+    const { locations, collection } = this.props;
+    return( <TodoList {...locations} collection={collection} /> );
   }
 }

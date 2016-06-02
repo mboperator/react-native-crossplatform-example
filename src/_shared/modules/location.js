@@ -2,16 +2,23 @@ import { createModule } from 'redux-modules';
 import { Map, fromJS } from 'immutable';
 import { v4 } from 'uuid';
 
+const uuidMiddleware = (_, { payload, meta }) => {
+  const location = { id: v4(), ... payload };
+  return {
+    payload: location,
+    meta,
+  };
+};
+
 export default createModule({
   name: 'locations',
   initialState: Map(),
   transformations: [
     {
       action: 'CREATE',
-      reducer: (state, { payload }) => {
-        const location = { id: v4(), ... payload };
-        return state.setIn(['collection', location.id], fromJS(location));
-      },
+      middleware: [uuidMiddleware],
+      reducer: (state, { payload }) =>
+        state.setIn(['collection', payload.id], fromJS(payload)),
     },
     {
       action: 'DESTROY',
