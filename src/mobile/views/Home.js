@@ -56,7 +56,8 @@ export default class App extends Component {
   }
 
   render() {
-    const { actions = {}, collection = [] } = this.props.locations || {};
+    const { locations, collection } = this.props;
+    const { actions = {} } = locations || {};
     return (
       <View style={styles.container}>
         <TextInput
