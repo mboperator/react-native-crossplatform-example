@@ -1,8 +1,10 @@
 import { takeLatest } from 'redux-saga';
-import { put } from 'redux-saga/effects';
+import { put, select } from 'redux-saga/effects';
 import loc from '../modules/location';
 import storage from '../services/storage';
 import getLocation from '../services/geolocation';
+
+const { constants } = loc;
 
 function* create({ payload }) {
   try {
@@ -22,9 +24,19 @@ function* hydrate() {
   }
 }
 
+function* persist() {
+  try {
+    const locations = yield select(state => state.locations);
+    yield storage.setItem('levi_locations', JSON.stringify(locations.toJS()));
+  } catch (e) {
+    console.log('Persist!', e);
+  }
+}
+
 export default function* locationSaga() {
-  yield* [
-    takeLatest(loc.constants.create, create),
-    takeLatest(loc.constants.hydrate, hydrate),
+  yield [
+    takeLatest(constants.create, create),
+    takeLatest(constants.hydrate, hydrate),
+    takeLatest([constants.update, constants.destroy], persist),
   ];
 }
