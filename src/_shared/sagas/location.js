@@ -27,7 +27,7 @@ function* hydrate() {
 function* persist() {
   try {
     const locations = yield select(state => state.locations);
-    yield storage.setItem('levi_locations', JSON.stringify(locations.toJS()));
+    yield storage.set('levi_locations', JSON.stringify(locations.toJS()));
   } catch (e) {
     console.log('Persist!', e);
   }
