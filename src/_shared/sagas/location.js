@@ -17,8 +17,10 @@ function* create({ payload }) {
 
 function* hydrate() {
   try {
-    const locations = yield storage.get('locations');
-    yield put(loc.actions.hydrateSucess(locations));
+    const locations = yield storage.get('levi_locations');
+    if (locations) {
+      yield put(loc.actions.hydrateSuccess(locations));
+    }
   } catch (e) {
     yield put(loc.actions.hydrateError(e));
   }
@@ -37,6 +39,10 @@ export default function* locationSaga() {
   yield [
     takeLatest(constants.create, create),
     takeLatest(constants.hydrate, hydrate),
-    takeLatest([constants.update, constants.destroy], persist),
+    takeLatest([
+      constants.create,
+      constants.update,
+      constants.destroy,
+    ], persist),
   ];
 }

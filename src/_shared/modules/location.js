@@ -12,7 +12,7 @@ const uuidMiddleware = (_, { payload, meta }) => {
 
 export default createModule({
   name: 'locations',
-  initialState: Map(),
+  initialState: fromJS({ collection: {}, _loading: false }),
   transformations: [
     {
       action: 'CREATE',

@@ -92,7 +92,7 @@ export default class App extends Component {
           keyboardType="default"
         />
         <Text style={styles.welcome}>
-          Setting module {locationModule.name}
+          {locationModule.name}
         </Text>
         <Text style={styles.welcome}>
           {JSON.stringify(collection)}
