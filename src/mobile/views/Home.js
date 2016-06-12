@@ -4,6 +4,7 @@ import {
   Text,
   View,
   TextInput,
+  MapView,
 } from 'react-native';
 
 import { connectModule } from 'redux-modules';
@@ -12,15 +13,27 @@ import locationModule from '../../_shared/modules/location';
 import { Map } from 'immutable';
 import storage from '../../_shared/services/storage';
 
+
 const locationsSelector = state => state.locations;
 const collectionSelector = createSelector(
   locationsSelector,
   locations => locations.get('collection', Map()).toList().toJS()
 );
-const selector = createStructuredSelector({
-  collection: collectionSelector,
-});
+const regionSelector = createSelector(
+  locationsSelector,
+  locations => ({
+    ...locations.get('region', Map({ latitude: 0, longitude: 0 })).toJS(),
+    latitudeDelta: 0.01,
+    longitudeDelta: 0.01,
+  })
+);
 
+const selector = createStructuredSelector({
+  locations: createStructuredSelector({
+    collection: collectionSelector,
+    region: regionSelector,
+  }),
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -39,6 +52,13 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  map: {
+    height: 150,
+    width: 200,
+    margin: 10,
+    borderWidth: 1,
+    borderColor: '#000000',
+  },
 });
 
 
@@ -56,8 +76,12 @@ export default class App extends Component {
   }
 
   render() {
-    const { locations, collection } = this.props;
-    const { actions = {} } = locations || {};
+    const {
+      actions = {},
+      collection = [],
+      region,
+    } = this.props.locations || {};
+
     return (
       <View style={styles.container}>
         <TextInput
@@ -68,11 +92,18 @@ export default class App extends Component {
           keyboardType="default"
         />
         <Text style={styles.welcome}>
-          Setting module {locationModule.name}
+          {locationModule.name}
         </Text>
         <Text style={styles.welcome}>
           {JSON.stringify(collection)}
         </Text>
+        <Text style={styles.welcome}>
+          Map
+        </Text>
+        <MapView
+          style={styles.map}
+          region={region}
+        />
       </View>
     );
   }

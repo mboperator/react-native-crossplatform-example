@@ -32,7 +32,7 @@ class Storage {
 
   set(key, payload) {
     log({ type: 'set', args: { key, payload } });
-    return this.adapter.setItem(key, payload);
+      return this.adapter.setItem(key, payload);
   }
 
   get(key) {
