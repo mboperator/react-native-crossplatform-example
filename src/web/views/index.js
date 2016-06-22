@@ -1,7 +1,5 @@
-import Home from './Home';
-import About from './About';
+import ExportHome from './Home';
+import ExportAbout from './About';
 
-module.exports = {
-  Home,
-  About,
-};
+export const Home = ExportHome;
+export const About = ExportAbout;
