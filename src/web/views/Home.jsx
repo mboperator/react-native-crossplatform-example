@@ -7,12 +7,10 @@ import { createSelector, createStructuredSelector } from 'reselect';
 import { Map } from 'immutable';
 
 const locationsSelector = state => state.locations || Map();
-
 const collectionSelector = createSelector(
   locationsSelector,
   locations => locations.get('collection', Map()).toList().toJS()
 );
-
 const selector = createStructuredSelector({
   collection: collectionSelector,
 });

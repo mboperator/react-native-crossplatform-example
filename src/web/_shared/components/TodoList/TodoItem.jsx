@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-const { number, string, bool, object } = PropTypes;
+const { string, bool, object } = PropTypes;
 import { ListItem, Heading, Button, Box, CheckBox } from 'grommet';
 
 const TodoItem = ({ description, actions, id, checked }) => (

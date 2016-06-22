@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { List, Header, Form, FormField, Button, Box } from 'grommet';
 import { findDOMNode } from 'react-dom';
 import TodoItem from './TodoItem';
 
+const { array, object } = PropTypes;
 export default class TodoList extends React.Component {
   static propTypes = {
-    collection: React.PropTypes.array.isRequired,
-    actions: React.PropTypes.object,
+    collection: array.isRequired,
+    actions: object,
   };
 
   constructor(props) {
