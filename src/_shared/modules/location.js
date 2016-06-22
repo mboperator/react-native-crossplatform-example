@@ -1,5 +1,5 @@
 import { createModule } from 'redux-modules';
-import { Map, fromJS } from 'immutable';
+import { fromJS } from 'immutable';
 import { v4 } from 'uuid';
 
 const uuidMiddleware = (_, { payload, meta }) => {

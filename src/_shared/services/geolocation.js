@@ -1,6 +1,4 @@
-
-
-const getLocation = () => new Promise( resolve => {
+const getLocation = () => new Promise(resolve => {
   navigator.geolocation
     ? navigator.geolocation.getCurrentPosition(resolve)
     : resolve('not available');

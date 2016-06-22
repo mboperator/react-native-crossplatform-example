@@ -7,10 +7,12 @@ import { createSelector, createStructuredSelector } from 'reselect';
 import { Map } from 'immutable';
 
 const locationsSelector = state => state.locations || Map();
+
 const collectionSelector = createSelector(
   locationsSelector,
   locations => locations.get('collection', Map()).toList().toJS()
 );
+
 const selector = createStructuredSelector({
   collection: collectionSelector,
 });
@@ -22,8 +24,8 @@ export default class Home extends React.Component {
       actions: React.PropTypes.shape({
         hydrate: React.PropTypes.func,
       }),
-      collection: React.PropTypes.array,
     }),
+    collection: React.PropTypes.array,
   };
 
   componentDidMount() {
@@ -33,6 +35,11 @@ export default class Home extends React.Component {
 
   render() {
     const { locations, collection } = this.props;
-    return ( <TodoList {...locations} collection={collection} /> );
+    return (
+      <TodoList
+        {...locations}
+        collection={collection}
+      />
+    );
   }
 }

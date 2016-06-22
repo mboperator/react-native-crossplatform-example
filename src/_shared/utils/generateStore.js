@@ -1,5 +1,5 @@
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
-import { fromJS } from 'immutable';
+import { createStore, applyMiddleware } from 'redux';
+import { fromJS, Map } from 'immutable';
 import createLogger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 
@@ -12,9 +12,9 @@ const logger = createLogger({
 
 const sagaMiddleware = createSagaMiddleware({});
 
-export default function generateStore(reducer) {
+export default function generateStore() {
   const store = createStore(
-    combineReducers(reducer),
+    (state = Map()) => state,
     applyMiddleware(logger, sagaMiddleware)
   );
   return {

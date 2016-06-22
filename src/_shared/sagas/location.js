@@ -19,7 +19,7 @@ function* hydrate() {
   try {
     const locations = yield storage.get('levi_locations');
     if (locations) {
-      yield put(loc.actions.hydrateSuccess(locations));
+      yield put(loc.actions.hydrateSuccess(JSON.parse(locations)));
     }
   } catch (e) {
     yield put(loc.actions.hydrateError(e));
@@ -28,7 +28,7 @@ function* hydrate() {
 
 function* persist() {
   try {
-    const locations = yield select(state => state.locations);
+    const locations = yield select(state => state.locations.get('collection'));
     yield storage.set('levi_locations', JSON.stringify(locations.toJS()));
   } catch (e) {
     console.log('Persist!', e);
