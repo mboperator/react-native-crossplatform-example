@@ -11,7 +11,9 @@ const TodoItem = ({ description, actions, id, checked }) => (
     separator="bottom"
   >
     <Box direction="row">
-      <CheckBox checked={checked}
+      <CheckBox
+        id={id}
+        checked={checked}
         onChange={() => {
           actions.update({ id, updates: { checked: !checked } });
         }}
