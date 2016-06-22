@@ -1,17 +1,16 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-
+import { ModuleProvider } from 'redux-modules';
 import Home from './views/Home';
-import modules from '../_shared/modules';
 import generateStore from '../_shared/utils/generateStore';
-const store = generateStore(modules);
 import sagas from '../_shared/sagas';
+
+const store = generateStore();
 store.runSaga(sagas);
 
 const ConnectedApp = () => (
-  <Provider store={store}>
+  <ModuleProvider store={store}>
     <Home />
-  </Provider>
+  </ModuleProvider>
 );
 
 export default ConnectedApp;

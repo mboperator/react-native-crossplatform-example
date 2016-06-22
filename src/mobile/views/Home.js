@@ -11,10 +11,9 @@ import { connectModule } from 'redux-modules';
 import { createSelector, createStructuredSelector } from 'reselect';
 import locationModule from '../../_shared/modules/location';
 import { Map } from 'immutable';
-import storage from '../../_shared/services/storage';
 
 
-const locationsSelector = state => state.locations;
+const locationsSelector = state => state.locations || Map();
 const collectionSelector = createSelector(
   locationsSelector,
   locations => locations.get('collection', Map()).toList().toJS()
@@ -66,13 +65,6 @@ const styles = StyleSheet.create({
 export default class App extends Component {
   componentDidMount() {
     const { actions = {} } = this.props.locations;
-
-    storage
-      .get('test')
-      .then(locations => {
-        if (!locations) { return; }
-        actions.hydrate(locations);
-      });
   }
 
   render() {
