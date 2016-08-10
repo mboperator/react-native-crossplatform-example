@@ -66,13 +66,7 @@ const styles = StyleSheet.create({
 export default class App extends Component {
   componentDidMount() {
     const { actions = {} } = this.props.locations;
-
-    storage
-      .get('test')
-      .then(locations => {
-        if (!locations) { return; }
-        actions.hydrate(locations);
-      });
+    actions.hydrate(locations);
   }
 
   render() {
