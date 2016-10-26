@@ -1,90 +1,51 @@
-# Levi [![Circle CI](https://circleci.com/gh/mboperator/redux-modules/tree/master.svg?style=svg)](https://circleci.com/gh/mboperator/levi/tree/master)
+# Spotnotes
+> An example app with shared web, iOS, and Android logic
 
-An opinionated framework **easily** developing **dope** applications.
+## Description
+Data transformations and async are all completely shared. By sharing the data layer, frontend developers can focus more time on what matters - the frontend experience.
 
-## Stack(ed)
-- View
-  - react
-  - react-router
-  - grommet
-- Data
-  - immutable
-  - redux
-  - redux-saga
-  - redux-modules
-- Build
-  - webpack 2
-  - css-modules
-  - babel 6
-  - yeoman
+## Disclaimer
+This project was hacked together fairly quickly and so there may be a few... rough edges. After all this I _do not_ recommend combining both clients in the same repository. I say this **not because of the code or file organization** but because of **dependencies**.
 
-# CLI Documentation
+`react-native` is on a 2 week release cycle which means dependencies break. Often. Normally this isn't too bad to deal with, but involving the web client can lead to dependency hell when it comes to resolving `react` versions. This may be a none issue with `yarn`, I haven't tried yet.
 
-## Development
+## Buzzwords Used
 
-| Start a new project |`levi g project AwesomeSPA` |
-|---------------------|----------------------------|
-| Start dev server    |`npm run  web:dev`          |
-| Start dev server    |`npm run  ios:dev`          |
-| Build Project       |`npm run  web:build`        |
+### Core
+- react
+- react-native
+- react-router
 
-## Generators
+### UI Layer
+- grommet
+- native-base
+- immutable
 
-| Generator  | Command                      |
-|------------|------------------------------|
-| Route      |`levi g route Feed`           |
-| Layout     |`levi g layout SplitPane`     |
-| Component  |`levi g component CoolWidget` |
-| Module     |`levi g module dopeModule`    |
-| Scaffold   |`levi g scaffold Todos`       |
+### Data Layer
+- redux
+- redux-saga
+- redux-modules
 
-## Generator Output
+### Build Tools
+- webpack
+- babel
 
-### Route
-- `levi g route Feed`
+## Project Structure
 ```
-// automatically generates route at /feed/
-modified src/routes/index.js
-created src/routes/Feed/index.js
-created src/routes/Feed/handler.jsx
-created src/routes/Feed/__tests__/handler-test.js
-```
-- `levi g route Users :user_id Detail`
-```
-// automatically generates route at /users/:user_id/detail
-modified src/routes/index.js
-created src/routes/Users/routes/Detail/index.js
-created src/routes/Users/routes/Detail/handler.jsx
-created src/routes/Users/routes/Detail/__tests__/handler-test.js
-```
+src/
+  _shared/
+    modules/
+    sagas/
+    services/
+    utils/
+  web/
+    components/
+    views/
+    App.js
+  mobile/
+    components/
+    views/
+    App.js
+    routes.js
 
-### Layout
-- `levi g layout SplitPane`
-```
-created src/_shared/layouts/SplitPane/index.js
-created src/_shared/layouts/SplitPane/SplitPane.jsx
-created src/_shared/layouts/SplitPane/__tests__/SplitPane-test.js
-```
-
-### Component
-- `levi g component DopeWidget`
-```
-modified src/_shared/components/index.js
-created src/_shared/components/DopeWidget/index.js
-created src/_shared/components/DopeWidget/DopeWidget.jsx
-created src/_shared/components/DopeWidget/__tests__/DopeWidget-test.js
-```
-
-### Module
-- `levi g module dopeModule`
-```
-// automatically registers module with state under dopeModule key
-modified src/_shared/modules/index.js
-created src/_shared/modules/dopeModule/index.js
-created src/_shared/modules/dopeModule/module.js
-created src/_shared/modules/dopeModule/selector.js
-created src/_shared/modules/dopeModule/dispatch.js
-created src/_shared/modules/dopeModule/Interface.js
-created src/_shared/modules/dopeModule/__tests__/module-test.js
-created src/_shared/modules/dopeModule/__tests__/Interface-test.js
 ```
