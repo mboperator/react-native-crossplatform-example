@@ -32,7 +32,7 @@
     "react-redux": "^4.4.1",
     "react-router": "^2.0.1",
     "redux": "^3.3.1",
-    "redux-modules": "^0.4.1",
+    "redux-modules": "^0.6.4",
     "redux-saga": "^0.10.4",
     "reselect": "^2.2.1"
   },

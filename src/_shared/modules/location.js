@@ -2,9 +2,10 @@ import { createModule } from 'redux-modules';
 import { fromJS } from 'immutable';
 import { v4 } from 'uuid';
 
-const uuidMiddleware = (_, { payload, meta }) => {
+const uuidMiddleware = ({ payload, meta, type }) => {
   const location = { id: v4(), ... payload };
   return {
+    type,
     payload: location,
     meta,
   };

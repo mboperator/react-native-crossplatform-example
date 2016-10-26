@@ -18,24 +18,22 @@ const selector = createStructuredSelector({
 @connectModule(selector, locationModule)
 export default class Home extends React.Component {
   static propTypes = {
-    locations: React.PropTypes.shape({
-      actions: React.PropTypes.shape({
-        hydrate: React.PropTypes.func,
-      }),
+    actions: React.PropTypes.shape({
+      hydrate: React.PropTypes.func,
     }),
     collection: React.PropTypes.array,
   };
 
   componentDidMount() {
-    const { actions } = this.props.locations;
+    const { actions } = this.props;
     actions.hydrate();
   }
 
   render() {
-    const { locations, collection } = this.props;
+    const { collection, actions } = this.props;
     return (
       <TodoList
-        {...locations}
+        actions={actions}
         collection={collection}
       />
     );

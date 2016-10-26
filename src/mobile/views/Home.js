@@ -32,10 +32,8 @@ const regionSelector = createSelector(
 );
 
 const selector = createStructuredSelector({
-  locations: createStructuredSelector({
-    collection: collectionSelector,
-    region: regionSelector,
-  }),
+  collection: collectionSelector,
+  region: regionSelector,
 });
 
 const styles = StyleSheet.create({
@@ -68,7 +66,7 @@ const styles = StyleSheet.create({
 @connectModule(selector, locationModule)
 export default class App extends Component {
   componentDidMount() {
-    const { actions = {} } = this.props.locations;
+    const { actions = {} } = this.props;
     actions.hydrate();
   }
 
@@ -77,8 +75,8 @@ export default class App extends Component {
       actions = {},
       collection = [],
       region,
-    } = this.props.locations || {};
-
+    } = this.props || {};
+    console.log(this.props);
     return (
       <View style={styles.container}>
         <TextInput
