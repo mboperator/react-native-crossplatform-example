@@ -7,6 +7,10 @@ import {
   MapView,
 } from 'react-native';
 
+import {
+  List, ListItem
+} from 'native-base';
+
 import { connectModule } from 'redux-modules';
 import { createSelector, createStructuredSelector } from 'reselect';
 import locationModule from '../../_shared/modules/location';
@@ -65,6 +69,7 @@ const styles = StyleSheet.create({
 export default class App extends Component {
   componentDidMount() {
     const { actions = {} } = this.props.locations;
+    actions.hydrate();
   }
 
   render() {
