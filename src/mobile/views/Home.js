@@ -7,14 +7,17 @@ import {
   MapView,
 } from 'react-native';
 
+import {
+  List, ListItem
+} from 'native-base';
+
 import { connectModule } from 'redux-modules';
 import { createSelector, createStructuredSelector } from 'reselect';
 import locationModule from '../../_shared/modules/location';
 import { Map } from 'immutable';
-import storage from '../../_shared/services/storage';
 
 
-const locationsSelector = state => state.locations;
+const locationsSelector = state => state.locations || Map();
 const collectionSelector = createSelector(
   locationsSelector,
   locations => locations.get('collection', Map()).toList().toJS()

@@ -38,6 +38,10 @@ const devConfig = baseConfig.mergeDeep({
         test: /\.css$/,
         loader: 'style!css',
       },
+      {
+        test: /\.json$/,
+        loader: 'json',
+      },
     ],
   },
 
