@@ -1,7 +1,7 @@
 import React from 'react';
 import { connectModule } from 'redux-modules';
 import locationModule from 'modules/location';
-import TodoList from 'components/TodoList';
+import TodoList from '../components/TodoList';
 
 @connectModule(locationModule)
 export default class Home extends React.Component {
