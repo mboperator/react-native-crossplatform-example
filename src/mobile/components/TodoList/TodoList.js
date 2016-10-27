@@ -1,48 +1,18 @@
-import React, {
-  View,
-  Component,
-  ListView,
-  TouchableHighlight,
-  Text,
-} from 'react-native';
+import React, { PropTypes } from 'react';
+import { List, ListItem, Text } from 'native-base';
 
-const TodoItem = actions => ({description, index}) => (
-  <TouchableHighlight onPress={actions.removeTodo.bind(null, {index: 0})}>
-    <View>
-      <Text>
-        {description}
-      </Text>
-      <View>
-      </View>
-    </View>
-  </TouchableHighlight>
+const TodoList = ({ collection }) => (
+  <List>
+    {collection.map(object => (
+      <ListItem key={object.id}>
+        <Text>{object.description}</Text>
+      </ListItem>
+    ))}
+  </List>
 );
 
-export default class TodoList extends Component {
-  constructor(props) {
-    super(props);
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2,
-    });
+TodoList.propTypes = {
+  collection: PropTypes.array,
+};
 
-    this.state = {
-      dataSource: ds.cloneWithRows(this.props.items),
-    };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const dataSource = this.state.dataSource.cloneWithRows(nextProps.items);
-    this.setState({ dataSource });
-  }
-
-  render() {
-    return (
-      <View>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={TodoItem({ removeTodo: this.props.removeTodo })}
-        />
-      </View>
-    );
-  }
-}
+export default TodoList;

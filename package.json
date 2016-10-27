@@ -23,7 +23,7 @@
     "babel-preset-react-native-stage-0": "^1.0.1",
     "grommet": "^0.6.7",
     "immutable": "^3.7.6",
-    "native-base": "^0.4.7",
+    "native-base": "^0.5.9",
     "ramda": "^0.19.1",
     "react": "^15.1.0",
     "react-dom": "^15.0.2",

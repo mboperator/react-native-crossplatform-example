@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import AppLayout from 'layouts/AppLayout';
+import AppLayout from './components/AppLayout';
 import {
   Home,
   About,
