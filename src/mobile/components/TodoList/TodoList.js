@@ -1,21 +1,18 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { List, ListItem, Text } from 'native-base';
 
-export default class TodoList extends Component {
-  static propTypes = {
-    collection: PropTypes.array,
-  };
+const TodoList = ({ collection }) => (
+  <List>
+    {collection.map(object => (
+      <ListItem key={object.id}>
+        <Text>{object.description}</Text>
+      </ListItem>
+    ))}
+  </List>
+);
 
-  render() {
-    const { collection } = this.props;
-    return (
-      <List>
-        {collection.map(object => (
-          <ListItem>
-            <Text>{object.description}</Text>
-          </ListItem>
-        ))}
-      </List>
-    );
-  }
-}
+TodoList.propTypes = {
+  collection: PropTypes.array,
+};
+
+export default TodoList;

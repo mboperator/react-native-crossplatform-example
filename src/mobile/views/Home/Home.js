@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { TextInput, MapView } from 'react-native';
 import { Container, Content, Header, Title } from 'native-base';
 import { connectModule } from 'redux-modules';
@@ -9,6 +9,14 @@ import styles from './style';
 
 @connectModule(locationModule)
 export default class App extends Component {
+  static propTypes = {
+    actions: PropTypes.shape({
+      hydrate: PropTypes.func,
+    }),
+    collection: PropTypes.array,
+    region: PropTypes.object,
+  };
+
   componentDidMount() {
     const { actions = {} } = this.props;
     actions.hydrate();
