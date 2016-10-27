@@ -1,6 +1,7 @@
 import { createModule } from 'redux-modules';
 import { fromJS } from 'immutable';
 import { v4 } from 'uuid';
+import selector from './selector';
 
 const uuidMiddleware = ({ payload, meta, type }) => {
   const location = { id: v4(), ... payload };
@@ -13,35 +14,36 @@ const uuidMiddleware = ({ payload, meta, type }) => {
 
 export default createModule({
   name: 'locations',
+  selector,
   initialState: fromJS({ collection: {}, _loading: false }),
   transformations: [
     {
-      action: 'CREATE',
+      type: 'CREATE',
       middleware: [uuidMiddleware],
       reducer: (state, { payload }) =>
         state.setIn(['collection', payload.id], fromJS(payload)),
     },
     {
-      action: 'DESTROY',
+      type: 'DESTROY',
       reducer: (state, { payload: { id } }) =>
         state.deleteIn(['collection', id]),
     },
     {
-      action: 'UPDATE',
+      type: 'UPDATE',
       reducer: (state, { payload: { id, updates } }) =>
         state.mergeIn(['collection', id], fromJS(updates)),
     },
     {
-      action: 'HYDRATE',
+      type: 'HYDRATE',
       reducer: state => state.set('_loading', true),
     },
     {
-      action: 'HYDRATE_SUCCESS',
+      type: 'HYDRATE_SUCCESS',
       reducer: (state, { payload }) =>
         state.set('collection', fromJS(payload)).set('_loading', false),
     },
     {
-      action: 'HYDRATE_ERROR',
+      type: 'HYDRATE_ERROR',
       reducer: (state, { payload }) =>
         state
         .set('_loading', 'false')
